@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
 const fetchBooks = () => {
     axios.get('http://localhost:8080/api/books/books')
-      .then(res => { console.log(res.data);
+      .then(res => { 
           setBookData(res.data);
       })            
       .catch(error => console.log(error));
