@@ -13,7 +13,6 @@ const BookList = () => {
   const [search, setSearch] = useState("");
   const {bookData,setBookData} = useContext(AuthContext);
   const [favorite , setFavorite] = useState(false);
-console.log(bookData);
    // Sorting
   const sortBookData = (value, order = 'asc') => {
     const sortedData = [...bookData].sort((a, b) => {
@@ -26,8 +25,7 @@ console.log(bookData);
 
 // Delete handler
 const handleDelete =async (id) => {
-  try {
-  console.log('clicked',id);  
+  try { 
   axios
     .delete(`http://localhost:8080/api/books/books/${id}`)
     .then((res) => { 
@@ -44,7 +42,6 @@ const toggleFavorite = (id) => {
   setFavorite(bookData.map(book =>
     book._id === id ? { ...book, favorite: !book.favorite } : book  
     ));
-    console.log('Id Clicked',id)
 };
   return (
     <div className="list-container">

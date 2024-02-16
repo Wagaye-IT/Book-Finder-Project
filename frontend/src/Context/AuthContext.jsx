@@ -8,18 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [bookData, setBookData] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
    
- 
-    console.log(isAuthenticated,'OutSide');
-//   Getting all Books here
-//   useEffect(() => {        
-//     axios.get('http://localhost:8080/api/books/books')
-//         .then(res => {
-//             setBookData(res.data)
-//         })            
-//         .catch(error => console.log(error));
-//      }, [setBookData]);
-
-const fetchBooks = () => {
+    const fetchBooks = () => {
     axios.get('http://localhost:8080/api/books/books')
       .then(res => { 
           setBookData(res.data);
@@ -38,7 +27,6 @@ useEffect(() => {
     const login = (token) => {
         localStorage.setItem("token", token);
         setIsAuthenticated(true);
-        console.log(token);
     }
     
     const signout = () => {
