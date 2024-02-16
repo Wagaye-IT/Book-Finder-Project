@@ -14,6 +14,7 @@ const AddBook = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const { fetchBooks } = useContext(AuthContext);
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {    
     const {name,value} = e.target;
@@ -41,7 +42,9 @@ const AddBook = () => {
     if (validate()) {
     axios.post('http://localhost:8080/api/books/books', bookData)
       .then(response => {
-        console.log('Form submitted successfully', response.data);
+        if(response.status === 'ok') {
+          setSuccess('Form submitted successfully');
+        }
         fetchBooks();
       })
       .catch(error => {
@@ -55,7 +58,7 @@ const AddBook = () => {
   return (
      <div className="form-container">
         <form >
-          <h1>Add New Book</h1>
+          <p>{success}</p>          <h1>Add New Book</h1>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input 
